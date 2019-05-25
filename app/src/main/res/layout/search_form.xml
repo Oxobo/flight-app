@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/departureText"
+        android:inputType="text"
+        android:layout_alignTop="@+id/departureTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="144dp"
+        android:layout_marginStart="144dp"
+        android:prompt="@string/country_prompt" />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deparlistView"
+        android:background="@color/white"
+        android:descendantFocusability="blocksDescendants"
+        android:choiceMode="singleChoice"
+        android:layout_below="@+id/departureText"
+        android:layout_toRightOf="@+id/takeOff"
+        android:layout_toEndOf="@+id/takeOff" />
+
+    <TextView
+        android:text="Departure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/departureTextView"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <ImageView
+        android:id="@+id/takeOff"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignLeft="@+id/departureTextView"
+        android:layout_alignStart="@+id/departureTextView"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ic_takeoff" />
+
+    <TextView
+        android:text="Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/departureText"
+        android:layout_alignLeft="@+id/departureTextView"
+        android:layout_alignStart="@+id/departureTextView"
+        android:layout_marginTop="26dp"
+        android:id="@+id/destinationTextView"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/destinationTextView"
+        android:id="@+id/destinationEditView"
+        android:inputType="text"
+        android:layout_alignLeft="@+id/departureText"
+        android:layout_alignStart="@+id/departureText"
+        />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/destlistView"
+        android:layout_below="@+id/destinationEditView"
+        android:background="@color/white"
+        android:descendantFocusability="blocksDescendants"
+        android:choiceMode="singleChoice"
+        android:drawSelectorOnTop="false"
+        android:layout_toRightOf="@+id/landing"
+        android:layout_toEndOf="@+id/landing"
+        />
+
+
+
+    <ImageView
+        android:id="@+id/landing"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/destinationTextView"
+        android:layout_alignStart="@+id/destinationTextView"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/ic_landing" />
+
+    <TextView
+        android:text="From"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:id="@+id/textView4"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:layout_below="@+id/destinationEditView"
+        android:layout_alignLeft="@+id/destinationTextView"
+        android:layout_alignStart="@+id/destinationTextView" />
+
+    <TextView
+        android:text="Till"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:layout_alignBaseline="@+id/dateAnd"
+        android:layout_alignBottom="@+id/dateAnd"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <ImageView
+        android:id="@+id/flightImageView"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_below="@+id/dateAnd"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_marginStart="-24dp"
+        android:layout_marginLeft="-24dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ic_flight" />
+
+
+    <EditText
+        android:id="@+id/dateStart"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+
+        android:hint="Select Date..."
+
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/destinationEditView"
+        android:layout_alignStart="@+id/destinationEditView" />
+
+    <EditText
+        android:id="@+id/dateAnd"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+
+        android:hint="Select Date..."
+
+        android:layout_below="@+id/dateStart"
+        android:layout_alignLeft="@+id/dateStart"
+        android:layout_alignStart="@+id/dateStart" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bBook"
+
+        android:onClick="searchFlights"
+        android:layout_alignBottom="@+id/flightImageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="80dp" />
+
+</RelativeLayout>

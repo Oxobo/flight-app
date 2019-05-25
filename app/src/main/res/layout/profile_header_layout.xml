@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ScrollView
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dip"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:scrollbars="horizontal|vertical">
+
+            <TableLayout 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_column="0"
+                        android:background="#D1DA83"
+                        android:gravity="left"
+                        android:padding="10sp"
+                        android:text="List of Reservations : "
+                        android:textStyle="bold"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_column="0"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:id="@+id/departure_city_header"
+                        android:padding="10sp"
+                        android:text="Departure City"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:id="@+id/departure_time_header"
+                        android:padding="10sp"
+                        android:text="Departure Time"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="2"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:id="@+id/departure_date_header"
+                        android:padding="10sp"
+                        android:text="Departure Date"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="3"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:id="@+id/airline_name_header"
+                        android:padding="10sp"
+                        android:text="Airline"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="4"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:padding="10sp"
+                        android:id="@+id/flight_number_header"
+                        android:text="Flight Number"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="5"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:padding="10sp"
+                        android:id="@+id/seat_number_header"
+                        android:text="Seat"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_column="6"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:id="@+id/ticket_number_header"
+                        android:padding="10sp"
+                        android:text="Ticket Number"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="7"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:padding="10sp"
+                        android:id="@+id/to_city_header"
+                        android:text="Destination City"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_column="8"
+                        android:background="#c0c0c0"
+                        android:gravity="left"
+                        android:padding="10sp"
+                        android:id="@+id/arrive_time_header"
+                        android:text="Arrival Time"
+                        android:textStyle="bold"/>
+                </TableRow>
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+</LinearLayout>

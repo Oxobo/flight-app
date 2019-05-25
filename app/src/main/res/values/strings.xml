@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Flight App</string>
+    <string name="btnSearchFlightText">Search Flights</string>
+    <string name="btnLoginText">Login</string>
+    <string-array name="editMenu">
+        <item>Destination</item>
+        <item>Depart</item>
+    </string-array>
+    <string name="destination">Destination Country</string>
+    <string name="departure">Departure</string>
+    <string name="country_prompt">Choose a country</string>
+    <string name="dbase_name">app</string>
+
+    <string name="home">home</string>
+    <string name="search_a_flight">Search</string>
+    <string name="log_in">Log in</string>
+    <string name="log_out">Log out</string>
+    <string name="share">Share</string>
+    <string name="contact_us">Contact us</string>
+</resources>

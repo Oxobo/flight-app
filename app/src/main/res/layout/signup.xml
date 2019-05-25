@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:text="Fill the registeration form :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:id="@+id/headerTextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Username"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/usernameTextView"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="84dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="normal|bold" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/usernameEditText"
+        android:hint="Enter username"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/usernameTextView"
+        android:layout_alignBottom="@+id/usernameTextView"
+        android:layout_alignLeft="@+id/passwordForm"
+        android:layout_alignStart="@+id/passwordForm" />
+
+    <TextView
+        android:text="Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/passText"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/usernameTextView"
+        android:layout_alignLeft="@+id/usernameTextView"
+        android:layout_alignStart="@+id/usernameTextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/usernameEditText"
+        android:id="@+id/passwordForm"
+        android:hint="Enter password"
+        android:layout_alignRight="@+id/Submit"
+        android:layout_alignEnd="@+id/Submit"
+        android:textSize="14sp" />
+
+    <TextView
+    android:text="First Name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="23dp"
+    android:id="@+id/firsnameTextView"
+    android:textStyle="normal|bold"
+    android:layout_below="@+id/passText"
+    android:layout_alignLeft="@+id/passText"
+    android:layout_alignStart="@+id/passText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:textSize="14sp"
+        android:layout_alignLeft="@+id/passwordForm"
+        android:layout_alignStart="@+id/passwordForm"
+        android:id="@+id/firstnameEditText"
+        android:layout_below="@+id/passwordForm"
+        android:layout_alignRight="@+id/Submit"
+        android:layout_alignEnd="@+id/Submit"
+        android:hint="First Name"
+        tools:ignore="NotSibling" />
+
+    <TextView
+    android:text="Last Name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="23dp"
+    android:id="@+id/lasnameTextView"
+    android:textStyle="normal|bold"
+    android:layout_below="@+id/firsnameTextView"
+    android:layout_alignLeft="@+id/firsnameTextView"
+    android:layout_alignStart="@+id/firsnameTextView"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:textSize="14sp"
+        android:layout_alignLeft="@+id/passwordForm"
+        android:layout_alignStart="@+id/passwordForm"
+        android:id="@+id/lastnameEditText"
+        android:layout_below="@+id/firstnameEditText"
+        android:layout_alignRight="@+id/Submit"
+        android:layout_alignEnd="@+id/Submit"
+        android:hint="Last Name"
+        tools:ignore="NotSibling" />
+
+    <TextView
+    android:text="Age"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="23dp"
+    android:id="@+id/ageTextView"
+    android:textStyle="normal|bold"
+    android:layout_below="@+id/lasnameTextView"
+    android:layout_alignLeft="@+id/lasnameTextView"
+    android:layout_alignStart="@+id/lasnameTextView"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:textSize="14sp"
+        android:layout_alignLeft="@+id/passwordForm"
+        android:layout_alignStart="@+id/passwordForm"
+        android:id="@+id/ageEditText"
+        android:layout_below="@+id/lastnameEditText"
+        android:layout_alignRight="@+id/Submit"
+        android:layout_alignEnd="@+id/Submit"
+        android:hint="Fill with Numbers"
+        tools:ignore="NotSibling" />
+
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/Submit"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/headerTextView"
+        android:layout_toEndOf="@+id/headerTextView"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:onClick="submit"/>
+
+
+</RelativeLayout>

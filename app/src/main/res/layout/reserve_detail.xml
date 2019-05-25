@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="24dp"
+    android:layout_marginLeft="24dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/passengerInfoHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Passenger Name: "
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/userFirstnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passengerInfoHeader"
+        android:text="Firstname"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/userLastnameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passengerInfoHeader"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/userFirstnameText"
+        android:layout_toRightOf="@id/userFirstnameText"
+        android:text="Lastname"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/flightInfoHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userFirstnameText"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Flight Information: "
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/fromLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flightInfoHeader"
+        android:text="From : "
+        android:textSize="15sp"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/departCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flightInfoHeader"
+        android:layout_toEndOf="@id/fromLocation"
+        android:layout_toRightOf="@id/fromLocation"
+        android:text="depart city" />
+
+    <TextView
+        android:id="@+id/departAirportCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flightInfoHeader"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/departCity"
+        android:layout_toRightOf="@id/departCity"
+        android:text="departAirportCode" />
+
+
+    <TextView
+        android:id="@+id/fromTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromLocation"
+        android:layout_marginBottom="10dp"
+        android:text="hh:ss" />
+
+    <TextView
+        android:id="@+id/fromDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromLocation"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/fromTime"
+        android:layout_toRightOf="@id/fromTime"
+        android:text="yyyy-mm-dd" />
+
+
+    <TextView
+        android:id="@+id/toLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromTime"
+        android:text="To : "
+        android:textSize="15sp"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/arriveCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromTime"
+        android:layout_alignStart="@id/departCity"
+        android:layout_alignLeft="@id/departCity"
+        android:layout_toEndOf="@id/toLocation"
+        android:layout_toRightOf="@id/toLocation"
+        android:text="arrive city" />
+
+    <TextView
+        android:id="@+id/arriveAirportCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromTime"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/arriveCity"
+        android:layout_toRightOf="@id/arriveCity"
+        android:text="arriveAirportCode" />
+
+
+    <TextView
+        android:id="@+id/toTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toLocation"
+        android:layout_marginBottom="10dp"
+        android:text="hh:ss" />
+
+    <TextView
+        android:id="@+id/toDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toLocation"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/toTime"
+        android:layout_toRightOf="@id/toTime"
+        android:text="yyyy-mm-dd" />
+
+    <TextView
+        android:id="@+id/FlightNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toTime"
+        android:layout_marginBottom="25dp"
+        android:text="Flight Number :"
+        android:textStyle="normal|bold|italic" />
+
+    <TextView
+        android:id="@+id/flightNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toTime"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@id/FlightNumberText"
+        android:layout_toRightOf="@id/FlightNumberText"
+        android:text="0000"
+        android:textStyle="normal|bold|italic" />
+
+    <LinearLayout
+        android:id="@+id/seatLineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FlightNumberText"
+        android:orientation="horizontal"
+        android:paddingTop="5sp">
+
+        <TextView
+            android:id="@+id/seatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seat Number"
+            android:textSize="18sp" />
+
+
+        <EditText
+            android:id="@+id/seatNumberEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:inputType="number"
+            android:hint="Enter Seat Number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="80dp"
+        android:onClick="reserveFlight"
+        android:text="Confirm" />
+
+</RelativeLayout>

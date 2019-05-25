@@ -1,0 +1,4 @@
+/build
+.idea
+/src/main/res/ress/.idea/*
+/proguard-rules.pro
