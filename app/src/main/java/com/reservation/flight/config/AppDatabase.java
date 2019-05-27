@@ -24,9 +24,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@Database(entities={Airline.class, Airport.class, Flight.class,
-                    FlightResrvation.class, Route.class, User.class},
-                    version=1, exportSchema = false)
+@Database(entities = {Airline.class, Airport.class, Flight.class,
+        FlightResrvation.class, Route.class, User.class},
+        version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -41,7 +41,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase buildDatabase(Context context) {
         final File dbFile = context.getDatabasePath(DB_NAME);
 
-        if(!dbFile.exists()) {
+        if (!dbFile.exists()) {
             copyDatabaseFile(context);
         }
 
@@ -78,8 +78,7 @@ public abstract class AppDatabase extends RoomDatabase {
             output.flush();
             output.close();
             inputStream.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.d("Activity", "Failed to open file", e);
             e.printStackTrace();
         }
@@ -87,7 +86,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public static AppDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = buildDatabase(context);
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = buildDatabase(context);
+                }
+            }
         }
         return (INSTANCE);
     }

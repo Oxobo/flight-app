@@ -15,12 +15,14 @@ import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
 import com.reservation.flight.model.User;
 import com.reservation.flight.modelView.ReservationView;
+import com.reservation.flight.repository.ReservationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Profile extends MainActivity {
     private User user;
+    ReservationRepository reservationRepository;
 
     private ArrayList<String> fromCities = new ArrayList<>();
     private ArrayList<String> toCities = new ArrayList<>();
@@ -46,9 +48,10 @@ public class Profile extends MainActivity {
     }
 
     private void generateTravelList() {
+        reservationRepository = new ReservationRepository(getApplication());
         String username = SaveSharedPreference.getUsername(getApplicationContext());
-        user = appDatabase.userDao().fetchUsersWithUsername(username);
-        List<ReservationView> reservationHistory = appDatabase.reservationDao().getReservationHistory(user.getUserID());
+        user = userRepository.fetchUsersWithUsername(username);
+        List<ReservationView> reservationHistory = reservationRepository.getReservationHistory(user.getUserID());
 
         for (ReservationView reservationView : reservationHistory) {
             fromCities.add(reservationView.departureAirport.getCity());

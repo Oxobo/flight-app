@@ -2,7 +2,6 @@ package com.reservation.flight.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,12 +17,12 @@ import android.widget.TextView;
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
 import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.repository.FlightRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResult extends MainActivity {
-
     private String departureLocation = "";
     private String arrivalLocation = "";
     private ArrayList<String> deparTimes = new ArrayList<>();
@@ -32,6 +30,8 @@ public class SearchResult extends MainActivity {
     private ArrayList<String> arrivTimes = new ArrayList<>();
     private ArrayList<String> airlines = new ArrayList<>();
     private ArrayList<Integer> flightNumbers = new ArrayList<>();
+
+    FlightRepository flightRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,13 @@ public class SearchResult extends MainActivity {
     }
 
     private void generateListContent() {
+        flightRepository = new FlightRepository(getApplication());
         String dateFrom = getIntent().getStringExtra("dateFrom");
         String dateTo = getIntent().getStringExtra("dateTo");
         String selectedDeparture = getIntent().getStringExtra("selectedDeparture");
         String selectedDestination = getIntent().getStringExtra("selectedDestination");
         List<FlightView> flightViews =
-                appDatabase.flightDao().fetchFlightsByDepartureDateAndRoute(dateFrom, dateTo, selectedDeparture, selectedDestination);
+                flightRepository.fetchFlightsByDepartureDateAndRoute(dateFrom, dateTo, selectedDeparture, selectedDestination);
 
         departureLocation = flightViews.get(0).departureAirport.getCity();
         arrivalLocation = flightViews.get(0).arrivalAirport.getCity();
@@ -66,27 +67,21 @@ public class SearchResult extends MainActivity {
     private void selectOneFlight(ListView listView) {
         Integer[] flightNumberArr = flightNumbers.toArray(new Integer[0]);
         listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
-                            Intent intent = new Intent(getBaseContext(), ReserveDetail.class);
-                            intent.putExtra("flightNumber", flightNumberArr[i]);
-                            startActivity(intent);
-                        } else {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(SearchResult.this);
-                            alert.setMessage("Please login!!");
-                            alert.setCancelable(true);
-                            alert.setPositiveButton(
-                                    "OK",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
+                (adapterView, view, i, l) -> {
+                    if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
+                        Intent intent = new Intent(getBaseContext(), ReserveDetail.class);
+                        intent.putExtra("flightNumber", flightNumberArr[i]);
+                        startActivity(intent);
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(SearchResult.this);
+                        alert.setTitle("Please login!!")
+                                .setMessage("You must log in to book a flight.")
+                                .setCancelable(true)
+                                .setPositiveButton("OK",
+                                        (dialog, id) -> {
                                             Intent intent = new Intent(getBaseContext(), Log.class);
                                             startActivity(intent);
-                                        }
-                                    });
-                            alert.show();
-                        }
+                                        }).show();
                     }
                 }
         );

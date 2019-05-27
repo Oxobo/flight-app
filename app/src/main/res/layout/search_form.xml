@@ -133,7 +133,7 @@
         android:layout_marginStart="-24dp"
         android:layout_marginLeft="-24dp"
         android:layout_marginTop="15dp"
-        app:srcCompat="@drawable/ic_flight" />
+        app:srcCompat="@drawable/planes_around_earth" />
 
 
     <EditText
@@ -169,6 +169,7 @@
         android:layout_alignBottom="@+id/flightImageView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="18dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="80dp" />

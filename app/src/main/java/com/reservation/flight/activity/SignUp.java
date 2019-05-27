@@ -1,5 +1,7 @@
 package com.reservation.flight.activity;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -29,15 +31,34 @@ public class SignUp extends MainActivity {
     }
 
     public void submit(View v) {
-        User user = new User(userName.getText().toString(),
-                password.getText().toString());
-        user.firstname(firstname.getText().toString())
-                .lastname(lastname.getText().toString())
-                .age(Integer.valueOf(age.getText().toString()));
-        appDatabase.userDao().insertUser(user);
-        Toast.makeText(getApplicationContext(),
-                "Accout Created : " + userName.getText().toString(),
-                Toast.LENGTH_LONG).show();
+        String usernameStr = userName.getText().toString();
+        String passwordStr = password.getText().toString();
+        String firstnameStr = firstname.getText().toString();
+        String lastnameStr = lastname.getText().toString();
+        String ageStr = age.getText().toString();
+
+        if (usernameStr.isEmpty() || passwordStr.isEmpty() ||
+                firstnameStr.isEmpty() || lastnameStr.isEmpty()) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(SignUp.this);
+            alert.setMessage("Please complete the required information !")
+                    .setTitle("Attention")
+                    .setCancelable(true)
+                    .setPositiveButton("OK",
+                            (dialog, id) -> dialog.cancel())
+                    .show();
+
+        } else {
+            User user = new User(usernameStr, passwordStr);
+            user.firstname(firstnameStr)
+                    .lastname(lastnameStr)
+                    .age(Integer.parseInt(ageStr));
+            userRepository.insertUser(user);
+            Toast.makeText(getApplicationContext(),
+                    "Accout Created : " + usernameStr,
+                    Toast.LENGTH_LONG).show();
+            Intent login = new Intent(this, Log.class);
+            startActivity(login);
+        }
     }
 
 }

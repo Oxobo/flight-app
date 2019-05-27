@@ -27,7 +27,7 @@ public class Log extends MainActivity {
     public void logIn(View v) {
         username = usernameText.getText().toString();
         password = passwordText.getText().toString();
-        User user = appDatabase.userDao().fetchUsersWithUsername(username);
+        User user = userRepository.fetchUsersWithUsername(username);
         if (user != null) {
             SaveSharedPreference.setLoggedIn(getApplicationContext(), username, true);
             Toast.makeText(getApplicationContext(), "Welcome  " + username, Toast.LENGTH_LONG).show();

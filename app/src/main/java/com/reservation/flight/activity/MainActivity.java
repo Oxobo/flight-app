@@ -12,19 +12,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reservation.flight.R;
-import com.reservation.flight.config.AppDatabase;
 import com.reservation.flight.config.SaveSharedPreference;
 import com.reservation.flight.model.User;
+import com.reservation.flight.repository.UserRepository;
 
 public class MainActivity extends AppCompatActivity {
     TextView userProfileName;
-    AppDatabase appDatabase;
+    UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        appDatabase = AppDatabase.getDatabase(this);
+        userRepository = new UserRepository(getApplication());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         if (SaveSharedPreference.getLoggedStatus(getApplicationContext()))
             setProfileName();
         getSupportActionBar().setElevation(0);
-        View view = getSupportActionBar().getCustomView();
+        getSupportActionBar().getCustomView();
     }
 
     private void setProfileName() {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.action_bar);
         userProfileName = (TextView) findViewById(R.id.user_profile_name);
         String username = SaveSharedPreference.getUsername(getApplicationContext());
-        User user = appDatabase.userDao().fetchUsersWithUsername(username);
+        User user = userRepository.fetchUsersWithUsername(username);
         String userFirstname = user.getFirstname();
         String userLastname = user.getLastname();
         userProfileName.setText(userFirstname+ " "+userLastname);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
+
         Intent mainIntent = new Intent(this, MainActivity.class);
         switch (item.getItemId()) {
             case R.id.homeMenu:

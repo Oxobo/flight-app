@@ -30,9 +30,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="710dp"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
-        app:srcCompat="@drawable/homepage"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:srcCompat="@drawable/plane_earth"
         android:id="@+id/imageView"
         android:layout_below="@+id/btLogin"
         android:layout_centerHorizontal="true" />

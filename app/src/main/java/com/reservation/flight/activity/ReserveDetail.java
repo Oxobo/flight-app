@@ -12,6 +12,8 @@ import com.reservation.flight.config.SaveSharedPreference;
 import com.reservation.flight.model.FlightResrvation;
 import com.reservation.flight.model.User;
 import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.repository.FlightRepository;
+import com.reservation.flight.repository.ReservationRepository;
 
 public class ReserveDetail extends MainActivity {
 
@@ -41,6 +43,9 @@ public class ReserveDetail extends MainActivity {
     private String flightNumber;
     private User user;
 
+    FlightRepository flightRepository;
+    ReservationRepository reservationRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +71,15 @@ public class ReserveDetail extends MainActivity {
     }
 
     private void initData() {
+        flightRepository = new FlightRepository(getApplication());
+        reservationRepository = new ReservationRepository(getApplication());
         String username = SaveSharedPreference.getUsername(getApplicationContext());
-        user = appDatabase.userDao().fetchUsersWithUsername(username);
+        user = userRepository.fetchUsersWithUsername(username);
         userFirstname = user.getFirstname();
         userLastname = user.getLastname();
 
         Integer flightNumberInt = getIntent().getIntExtra("flightNumber", -1);
-        FlightView flightView = appDatabase.flightDao().getFlightDetailByFlightNumber(flightNumberInt);
+        FlightView flightView = flightRepository.getFlightDetailByFlightNumber(flightNumberInt);
         departCity = flightView.departureAirport.getCity();
         departAirportCode = flightView.departureAirport.getCode();
         fromTime = flightView.flight.getDepartureTime();
@@ -99,13 +106,13 @@ public class ReserveDetail extends MainActivity {
         flightNumberText.setText(flightNumber);
     }
 
-    public void reserveFlight(View view){
+    public void reserveFlight(View view) {
         int seatNum = Integer.parseInt(seatNumberEdit.getText().toString());
         FlightResrvation flightResrvation = new FlightResrvation();
         flightResrvation.setFlightNumber(Integer.parseInt(flightNumber));
         flightResrvation.setSeatNumber(seatNum);
         flightResrvation.setUserID(user.getUserID());
-        long ticketNumber = appDatabase.reservationDao().insertFlightResrvation(flightResrvation);
+        long ticketNumber = reservationRepository.insertFlightResrvation(flightResrvation);
         Toast.makeText(getApplicationContext(),
                 "Reserved Successfully : " + userFirstname + " "+ userLastname
                 + " your Ticket number is "+ ticketNumber,

@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface ReservationDao {
     @Insert
-    long insertFlightResrvation(FlightResrvation flightResrvation);
+    Long insertFlightResrvation(FlightResrvation flightResrvation);
 
     @Query("select fr.ticketNumber  as fr_ticketNumber,\n" +
             "       fr.flightNumber  as fr_flightNumber,\n" +
