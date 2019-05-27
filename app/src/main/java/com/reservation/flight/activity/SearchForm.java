@@ -172,7 +172,7 @@ public class SearchForm extends MainActivity {
     private void findingFlights(String dateFrom, String dateTo) {
         List<FlightView> flightViews =
                 flightRepository.
-                        fetchFlightsByDepartureDateAndRoute(
+                        fetchFlightsByDateAndRoute(
                                 dateFrom,
                                 dateTo,
                                 selectedDeparture,

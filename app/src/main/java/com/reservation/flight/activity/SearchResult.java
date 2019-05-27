@@ -32,12 +32,14 @@ public class SearchResult extends MainActivity {
     private ArrayList<Integer> flightNumbers = new ArrayList<>();
 
     FlightRepository flightRepository;
+    List<FlightView> flightViews;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reservation_list);
-        ListView listView = (ListView) findViewById(R.id.reserveListview);
+        listView = findViewById(R.id.reserveListview);
         generateListContent();
         listView.setAdapter(new ListAdapter(this, R.layout.reservation_list_item, deparTimes));
         selectOneFlight(listView);
@@ -49,23 +51,40 @@ public class SearchResult extends MainActivity {
         String dateTo = getIntent().getStringExtra("dateTo");
         String selectedDeparture = getIntent().getStringExtra("selectedDeparture");
         String selectedDestination = getIntent().getStringExtra("selectedDestination");
-        List<FlightView> flightViews =
-                flightRepository.fetchFlightsByDepartureDateAndRoute(dateFrom, dateTo, selectedDeparture, selectedDestination);
+        flightViews = flightRepository
+                .fetchFlightsByDateAndRoute(dateFrom, dateTo,
+                        selectedDeparture, selectedDestination);
 
         departureLocation = flightViews.get(0).departureAirport.getCity();
         arrivalLocation = flightViews.get(0).arrivalAirport.getCity();
+        setFlightDetails(flightViews);
 
-        for (FlightView flightView : flightViews) {
-            deparTimes.add(flightView.flight.getDepartureTime());
-            deparDates.add(flightView.flight.getDepartureDate());
-            arrivTimes.add(flightView.flight.getArrivalTime());
-            airlines.add(flightView.airlineName);
-            flightNumbers.add(flightView.flight.getFlightNumber());
+        flightRepository
+                .observableFlightsByDateAndRoute(dateFrom, dateTo,
+                        selectedDeparture, selectedDestination)
+                .observe(this, flightViewList -> {
+                    if (flightViewList != null && !flightViewList.isEmpty()) {
+                        listView.requestLayout();
+                        setFlightDetails(flightViewList);
+                    }
+                });
+    }
+
+    private void setFlightDetails(@Nullable List<FlightView> flightViews) {
+        if (flightViews != null && !flightViews.isEmpty()) {
+            for (FlightView flightView : flightViews) {
+                deparTimes.add(flightView.flight.getDepartureTime());
+                deparDates.add(flightView.flight.getDepartureDate());
+                arrivTimes.add(flightView.flight.getArrivalTime());
+                airlines.add(flightView.airlineName);
+                flightNumbers.add(flightView.flight.getFlightNumber());
+            }
         }
     }
 
     private void selectOneFlight(ListView listView) {
         Integer[] flightNumberArr = flightNumbers.toArray(new Integer[0]);
+        listView.requestLayout();
         listView.setOnItemClickListener(
                 (adapterView, view, i, l) -> {
                     if (SaveSharedPreference.getLoggedStatus(getApplicationContext())) {
@@ -94,30 +113,36 @@ public class SearchResult extends MainActivity {
         private String[] arrivTimeArr;
         private String[] airlineArr;
 
-        public ListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
+        private ListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
             super(context, resource, objects);
             layout = resource;
-            deparTimeArr = objects.toArray(new String[0]);
+            deparTimeArr = deparTimes.toArray(new String[0]);
             deparDateArr = deparDates.toArray(new String[0]);
             arrivTimeArr = arrivTimes.toArray(new String[0]);
             airlineArr = airlines.toArray(new String[0]);
         }
 
+        @Override
+        public int getCount() {
+            return deparTimeArr.length;
+        }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            listView.requestLayout();
             ListViewHolder viewHolder;
             if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(layout, parent, false);
                 viewHolder = new ListViewHolder();
-                viewHolder.fromCity = (TextView) convertView.findViewById(R.id.reservation_from_city);
-                viewHolder.departureTime = (TextView) convertView.findViewById(R.id.reservation_departure_time);
-                viewHolder.departureDate = (TextView) convertView.findViewById(R.id.reservation_departure_date);
-                viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageInList);
-                viewHolder.airlineName = (TextView) convertView.findViewById(R.id.reservation_airline_name);
-                viewHolder.toCity = (TextView) convertView.findViewById(R.id.reservation_to_city);
-                viewHolder.arriveTime = (TextView) convertView.findViewById(R.id.reservation_arrive_time);
+                viewHolder.fromCity = convertView.findViewById(R.id.reservation_from_city);
+                viewHolder.departureTime = convertView.findViewById(R.id.reservation_departure_time);
+                viewHolder.departureDate = convertView.findViewById(R.id.reservation_departure_date);
+                viewHolder.imageView = convertView.findViewById(R.id.imageInList);
+                viewHolder.airlineName = convertView.findViewById(R.id.reservation_airline_name);
+                viewHolder.toCity = convertView.findViewById(R.id.reservation_to_city);
+                viewHolder.arriveTime = convertView.findViewById(R.id.reservation_arrive_time);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ListViewHolder) convertView.getTag();
@@ -131,7 +156,7 @@ public class SearchResult extends MainActivity {
             return convertView;
         }
 
-        public class ListViewHolder {
+        private class ListViewHolder {
             TextView fromCity;
             TextView departureTime;
             TextView departureDate;
