@@ -11,12 +11,12 @@ import com.reservation.flight.dao.FlightDao;
 import com.reservation.flight.dao.ReservationDao;
 import com.reservation.flight.dao.RouteDao;
 import com.reservation.flight.dao.UserDao;
-import com.reservation.flight.model.Airline;
-import com.reservation.flight.model.Airport;
-import com.reservation.flight.model.Flight;
-import com.reservation.flight.model.FlightResrvation;
-import com.reservation.flight.model.Route;
-import com.reservation.flight.model.User;
+import com.reservation.flight.datamodel.Airline;
+import com.reservation.flight.datamodel.Airport;
+import com.reservation.flight.datamodel.Flight;
+import com.reservation.flight.datamodel.FlightResrvation;
+import com.reservation.flight.datamodel.Route;
+import com.reservation.flight.datamodel.User;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,13 +29,17 @@ import java.io.OutputStream;
         version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static AppDatabase INSTANCE;
-    private final static String DB_NAME = "app";
+    private static AppDatabase database;
+    private static final String DB_NAME = "app";
 
     public abstract UserDao userDao();
+
     public abstract AirportDao airportDao();
+
     public abstract FlightDao flightDao();
+
     public abstract RouteDao routeDao();
+
     public abstract ReservationDao reservationDao();
 
     private static AppDatabase buildDatabase(Context context) {
@@ -64,9 +68,8 @@ public abstract class AppDatabase extends RoomDatabase {
         dbPath.getParentFile().mkdirs();
 
         // Try to copy database file
-        try {
-            final InputStream inputStream = context.getAssets().open(DB_NAME);
-            final OutputStream output = new FileOutputStream(dbPath);
+        try (final InputStream inputStream = context.getAssets().open(DB_NAME);
+             final OutputStream output = new FileOutputStream(dbPath)) {
 
             byte[] buffer = new byte[8192];
             int length;
@@ -76,23 +79,16 @@ public abstract class AppDatabase extends RoomDatabase {
             }
 
             output.flush();
-            output.close();
-            inputStream.close();
+
         } catch (IOException e) {
             Log.d("Activity", "Failed to open file", e);
-            e.printStackTrace();
         }
     }
 
-    public static AppDatabase getDatabase(Context context) {
-        if (INSTANCE == null) {
-            synchronized (AppDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = buildDatabase(context);
-                }
-            }
-        }
-        return (INSTANCE);
+    public static synchronized AppDatabase getDatabase(Context context) {
+        if (database == null)
+            database = buildDatabase(context);
+        return database;
     }
 
 

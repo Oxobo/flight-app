@@ -3,7 +3,7 @@ package com.reservation.flight.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 
-import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.viewmodel.FlightView;
 
 import java.util.List;
 

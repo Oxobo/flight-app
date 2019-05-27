@@ -4,8 +4,8 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.reservation.flight.model.FlightResrvation;
-import com.reservation.flight.modelView.ReservationView;
+import com.reservation.flight.datamodel.FlightResrvation;
+import com.reservation.flight.viewmodel.ReservationView;
 
 import java.util.List;
 

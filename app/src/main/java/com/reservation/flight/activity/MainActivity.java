@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
-import com.reservation.flight.model.User;
+import com.reservation.flight.datamodel.User;
 import com.reservation.flight.repository.UserRepository;
 
 public class MainActivity extends AppCompatActivity {

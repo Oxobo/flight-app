@@ -1,10 +1,10 @@
-package com.reservation.flight.modelView;
+package com.reservation.flight.viewmodel;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 
-import com.reservation.flight.model.Airport;
-import com.reservation.flight.model.Flight;
+import com.reservation.flight.datamodel.Airport;
+import com.reservation.flight.datamodel.Flight;
 
 public class FlightView {
 

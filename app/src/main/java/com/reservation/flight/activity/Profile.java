@@ -13,15 +13,14 @@ import android.widget.TextView;
 
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
-import com.reservation.flight.model.User;
-import com.reservation.flight.modelView.ReservationView;
+import com.reservation.flight.datamodel.User;
+import com.reservation.flight.viewmodel.ReservationView;
 import com.reservation.flight.repository.ReservationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Profile extends MainActivity {
-    private User user;
     ReservationRepository reservationRepository;
 
     private ArrayList<String> fromCities = new ArrayList<>();
@@ -50,7 +49,7 @@ public class Profile extends MainActivity {
     private void generateTravelList() {
         reservationRepository = new ReservationRepository(getApplication());
         String username = SaveSharedPreference.getUsername(getApplicationContext());
-        user = userRepository.fetchUsersWithUsername(username);
+        User user = userRepository.fetchUsersWithUsername(username);
         List<ReservationView> reservationHistory = reservationRepository.getReservationHistory(user.getUserID());
 
         for (ReservationView reservationView : reservationHistory) {

@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.reservation.flight.config.AppDatabase;
 import com.reservation.flight.dao.UserDao;
-import com.reservation.flight.model.User;
+import com.reservation.flight.datamodel.User;
 
 public class UserRepository {
     private UserDao userDao;

@@ -7,10 +7,16 @@ import android.preference.PreferenceManager;
 public class SaveSharedPreference {
     public static final String LOGGED_IN_PREF = "logged_in_status";
     public static final String LOGGED_IN_USER = "logged_in_user";
-    static SharedPreferences getPreferences(Context context) {
+
+    private SaveSharedPreference() {
+        throw new IllegalStateException("Utility class");
+    }
+
+    private static SharedPreferences getPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
-    public static String getUsername(Context context){
+
+    public static String getUsername(Context context) {
         if (getLoggedStatus(context)) {
             return getPreferences(context).getString(LOGGED_IN_USER, "NothingFound");
         }

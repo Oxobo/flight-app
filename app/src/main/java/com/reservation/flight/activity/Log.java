@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
-import com.reservation.flight.model.User;
+import com.reservation.flight.datamodel.User;
 
 public class Log extends MainActivity {
     EditText usernameText;

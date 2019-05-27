@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
-import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.viewmodel.FlightView;
 import com.reservation.flight.repository.FlightRepository;
 
 import java.util.ArrayList;

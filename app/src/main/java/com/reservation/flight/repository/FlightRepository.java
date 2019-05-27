@@ -1,13 +1,10 @@
 package com.reservation.flight.repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 
 import com.reservation.flight.config.AppDatabase;
-import com.reservation.flight.dao.AirportDao;
 import com.reservation.flight.dao.FlightDao;
-import com.reservation.flight.model.Airport;
-import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.viewmodel.FlightView;
 
 import java.util.List;
 

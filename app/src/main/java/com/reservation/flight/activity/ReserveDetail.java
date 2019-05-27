@@ -9,9 +9,9 @@ import android.widget.Toast;
 
 import com.reservation.flight.R;
 import com.reservation.flight.config.SaveSharedPreference;
-import com.reservation.flight.model.FlightResrvation;
-import com.reservation.flight.model.User;
-import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.datamodel.FlightResrvation;
+import com.reservation.flight.datamodel.User;
+import com.reservation.flight.viewmodel.FlightView;
 import com.reservation.flight.repository.FlightRepository;
 import com.reservation.flight.repository.ReservationRepository;
 

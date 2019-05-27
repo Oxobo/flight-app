@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.reservation.flight.config.AppDatabase;
 import com.reservation.flight.dao.ReservationDao;
-import com.reservation.flight.model.FlightResrvation;
-import com.reservation.flight.modelView.ReservationView;
+import com.reservation.flight.datamodel.FlightResrvation;
+import com.reservation.flight.viewmodel.ReservationView;
 
 import java.util.List;
 

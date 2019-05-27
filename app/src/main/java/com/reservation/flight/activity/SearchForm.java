@@ -13,8 +13,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.reservation.flight.R;
-import com.reservation.flight.model.Airport;
-import com.reservation.flight.modelView.FlightView;
+import com.reservation.flight.datamodel.Airport;
+import com.reservation.flight.viewmodel.FlightView;
 import com.reservation.flight.repository.AirportRepository;
 import com.reservation.flight.repository.FlightRepository;
 import com.reservation.flight.repository.RouteRepository;
@@ -86,7 +86,9 @@ public class SearchForm extends MainActivity {
 
         flightEditFrom.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -108,7 +110,9 @@ public class SearchForm extends MainActivity {
 
         flightEditTo.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
