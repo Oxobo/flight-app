@@ -111,27 +111,6 @@ public class DateSelector {
         startDatePicker.show();
     }
 
-    public boolean checkDates() {
-        if (getSelectedStartCal().after(getSelectedEndCal()) ) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.setMessage("Please choose a valid date !")
-                    .setTitle("First date is bigger than second")
-                    .setCancelable(true)
-                    .setPositiveButton("OK",
-                            (dialog, id) -> dialog.cancel())
-                    .show();
-            return false;
-        } else if (todayCal.after(getSelectedEndCal())) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.setMessage("Please choose a valid date !")
-                    .setTitle("The selected dates has been passed")
-                    .setCancelable(true)
-                    .setPositiveButton("OK",
-                            (dialog, id) -> dialog.cancel())
-                    .show();
-            return false;
-        }
-        return true;
-    }
+
 
 }

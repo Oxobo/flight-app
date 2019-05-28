@@ -40,12 +40,21 @@ public class FlightResrvation {
         this.ticketNumber = ticketNumber;
     }
 
+    public FlightResrvation ticketNumber(Integer ticketNumber) {
+        this.ticketNumber = ticketNumber;
+        return this;
+    }
+
     public Integer getFlightNumber() {
         return flightNumber;
     }
 
     public void setFlightNumber(Integer flightNumber) {
         this.flightNumber = flightNumber;
+    }
+    public FlightResrvation flightNumber(Integer flightNumber) {
+        this.flightNumber = flightNumber;
+        return this;
     }
 
     public Integer getSeatNumber() {
@@ -56,11 +65,21 @@ public class FlightResrvation {
         this.seatNumber = seatNumber;
     }
 
+    public FlightResrvation seatNumber(Integer seatNumber) {
+        this.seatNumber = seatNumber;
+        return this;
+    }
+
     public Integer getUserID() {
         return userID;
     }
 
     public void setUserID(Integer userID) {
         this.userID = userID;
+    }
+
+    public FlightResrvation userID(Integer userID) {
+        this.userID = userID;
+        return this;
     }
 }

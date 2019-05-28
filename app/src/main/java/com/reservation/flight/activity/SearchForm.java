@@ -1,8 +1,10 @@
 package com.reservation.flight.activity;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +21,11 @@ import com.reservation.flight.repository.AirportRepository;
 import com.reservation.flight.repository.FlightRepository;
 import com.reservation.flight.repository.RouteRepository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -140,7 +146,7 @@ public class SearchForm extends MainActivity {
         String dateFromStr  = String.valueOf(startDate.getText());
         String dateToStr = String.valueOf(endDate.getText());
 
-        if (validateFields(dateFromStr, dateToStr) && dateSelector.checkDates()) {
+        if (validateFields(dateFromStr, dateToStr) && checkDates(dateFromStr, dateToStr)) {
             if (!routeExists(selectedDeparture, selectedDestination)) {
                 Toast.makeText(getApplicationContext(),
                         "There is no flight path between "
@@ -160,6 +166,33 @@ public class SearchForm extends MainActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(SearchForm.this);
             alert.setMessage("Please complete the required information !")
                     .setTitle("Attention")
+                    .setCancelable(true)
+                    .setPositiveButton("OK",
+                            (dialog, id) -> dialog.cancel())
+                    .show();
+            return false;
+        }
+        return true;
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    public boolean checkDates(String dateFromStr, String dateToStr) {
+        LocalDate selectedStart = LocalDate.parse(dateFromStr);
+        LocalDate selectedEnd = LocalDate.parse(dateToStr);
+        LocalDate today = LocalDate.now();
+        if (selectedStart.isAfter(selectedEnd) ) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Please choose a valid date !")
+                    .setTitle("First date is bigger than second")
+                    .setCancelable(true)
+                    .setPositiveButton("OK",
+                            (dialog, id) -> dialog.cancel())
+                    .show();
+            return false;
+        } else if (today.isAfter(selectedEnd)) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Please choose a valid date !")
+                    .setTitle("The selected dates has been passed")
                     .setCancelable(true)
                     .setPositiveButton("OK",
                             (dialog, id) -> dialog.cancel())
